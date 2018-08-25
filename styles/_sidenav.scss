@@ -1,0 +1,25 @@
+.navbar-expand {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $next: breakpoint-next($breakpoint, $grid-breakpoints);
+    $infix: breakpoint-infix($next, $grid-breakpoints);
+
+    &#{$infix} {
+      @include media-breakpoint-down($breakpoint) {
+        .sidenav {
+          position: absolute;
+          top: 100%;
+          height: calc(100vh - 100%) !important;
+          width: 100%;
+          left: 0%;
+          transition: left 0.35s;
+          padding: 2rem;
+          background-color: inherit;
+        }
+
+        .sidenav:not(.show) {
+          left: -100%;
+        }
+      }
+    }
+  }
+}
